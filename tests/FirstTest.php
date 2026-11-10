@@ -3,13 +3,12 @@
 namespace Rennokki\QueryCache\Test;
 
 use Illuminate\Support\Facades\Cache;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Rennokki\QueryCache\Test\Models\Post;
 
 class FirstTest extends TestCase
 {
-    /**
-     * @dataProvider strictModeContextProvider
-     */
+    #[DataProvider('strictModeContextProvider')]
     public function test_first()
     {
         $post = factory(Post::class)->create();
@@ -24,9 +23,7 @@ class FirstTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider strictModeContextProvider
-     */
+    #[DataProvider('strictModeContextProvider')]
     public function test_first_with_columns()
     {
         $post = factory(Post::class)->create();

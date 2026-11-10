@@ -2,13 +2,12 @@
 
 namespace Rennokki\QueryCache\Test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Rennokki\QueryCache\Test\Models\Page;
 
 class FlushCacheOnUpdateTest extends TestCase
 {
-    /**
-     * @dataProvider strictModeContextProvider
-     */
+    #[DataProvider('strictModeContextProvider')]
     public function test_flush_cache_on_create()
     {
         $page = factory(Page::class)->create();
@@ -31,9 +30,7 @@ class FlushCacheOnUpdateTest extends TestCase
         $this->assertNull($cache);
     }
 
-    /**
-     * @dataProvider strictModeContextProvider
-     */
+    #[DataProvider('strictModeContextProvider')]
     public function test_flush_cache_on_update()
     {
         $page = factory(Page::class)->create();
@@ -56,9 +53,7 @@ class FlushCacheOnUpdateTest extends TestCase
         $this->assertNull($cache);
     }
 
-    /**
-     * @dataProvider strictModeContextProvider
-     */
+    #[DataProvider('strictModeContextProvider')]
     public function test_flush_cache_on_delete()
     {
         $page = factory(Page::class)->create();
@@ -79,9 +74,7 @@ class FlushCacheOnUpdateTest extends TestCase
         $this->assertNull($cache);
     }
 
-    /**
-     * @dataProvider strictModeContextProvider
-     */
+    #[DataProvider('strictModeContextProvider')]
     public function test_flush_cache_on_force_deletion()
     {
         $page = factory(Page::class)->create();

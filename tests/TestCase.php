@@ -15,8 +15,8 @@ abstract class TestCase extends Orchestra
     {
         parent::setUp();
 
-        if ($this->getProvidedData() && method_exists(Model::class, 'preventAccessingMissingAttributes')) {
-            [$strict] = $this->getProvidedData();
+        if ($this->providedData() && method_exists(Model::class, 'preventAccessingMissingAttributes')) {
+            [$strict] = $this->providedData();
             Model::preventAccessingMissingAttributes($strict);
         }
 
@@ -106,10 +106,15 @@ abstract class TestCase extends Orchestra
             : Cache::get($key);
     }
 
-    public function strictModeContextProvider(): iterable
+    public static function strictModeContextProvider(): iterable
     {
         yield [true];
         yield [false];
+    }
+
+    protected function aggregateAlias(): string
+    {
+        return version_compare($this->app->version(), '13.0.0', '>=') ? '"aggregate"' : 'aggregate';
     }
 
     /**
